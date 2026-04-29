@@ -125,14 +125,14 @@ export default function StoryPage() {
           <div className="space-y-8">
             <h2 className="font-serif text-5xl text-gray-900 leading-tight">Une vision <br/> reconnue <span className="text-leelou">mondialement.</span></h2>
             <p className="text-lg text-gray-600">
-              En 2024, le projet Leelou a été couronné par le prestigieux prix **SUFAWE** (Support for African Women Entrepreneurs). Cette distinction ne célèbre pas seulement un produit, mais l'impact d'une femme sur la sécurité alimentaire du continent.
+              En 2025, le projet Leelou a été couronné par le prestigieux prix **SUFAWE** (Support for African Women Entrepreneurs). Cette distinction ne célèbre pas seulement un produit, mais l'impact d'une femme sur la sécurité alimentaire du continent.
             </p>
             <div className="w-32 h-1 bg-leelou rounded-full" />
           </div>
           <div className="bg-white p-12 rounded-[60px] border border-leelou/10 shadow-xl rotate-2">
              <div className="flex flex-col items-center text-center gap-6">
                 <div className="w-20 h-20 bg-leelou rounded-full flex items-center justify-center text-white text-3xl font-black">🏆</div>
-                <h4 className="text-2xl font-serif">Lauréate 2024</h4>
+                <h4 className="text-2xl font-serif">Lauréate 2025</h4>
                 <p className="text-gray-400 font-medium">Récompense de l'Excellence et de l'Innovation en Entrepreneuriat Féminin Africain.</p>
              </div>
           </div>
