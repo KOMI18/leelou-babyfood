@@ -1,74 +1,145 @@
 "use client";
 
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useCart } from "../store/useCart";
-import { Menu, ShoppingCart, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+export function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-  const total = useCart((state) => state.totalItems());
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: "Accueil", href: "#hero" },
+    { label: "Nos Packs", href: "#packs" },
+    { label: "Points de Vente", href: "#points-de-vente" },
+    { label: "Nos Recettes", href: "#recettes" },
+    { label: "Pourquoi Leelou", href: "#pourquoi-leelou" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Notre Histoire", href: "#histoire" },
+  ];
+
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/80 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-6"
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm py-3"
+          : "bg-white/80 backdrop-blur-sm py-4 border-b border-gray-100/60"
       }`}
     >
-      <header className="fixed top-0 w-full z-[60] bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        <img src="/logo/leelou.png" alt="Leelou Logo" className="h-12" />
+      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="#hero" className="flex items-center gap-2 group">
+          <img
+            src="/logo/leelou.png"
+            alt="Leelou Baby Food"
+            className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+          />
+        </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 font-medium text-gray-600">
-          <Link href="/" className="hover:text-leelou">Accueil</Link>
-          <Link href="/products" className="hover:text-leelou">Boutique</Link>
-          <Link href="/checkout" className="hover:text-leelou">Commande</Link>
-          <Link href="/story" className="hover:text-leelou">Notre Histoire</Link>
-
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-medium text-sm text-gray-700">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:text-leelou transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-leelou hover:after:w-full after:transition-all after:duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Link href="/checkout" className="relative p-2">
-            <ShoppingCart size={24} className="text-gray-700" />
-            {total > 0 && (
-              <span className="absolute top-0 right-0 bg-leelou text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
-                {total}
-              </span>
-            )}
-          </Link>
-          
-          {/* Burger Menu Mobile */}
-          <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+        {/* WhatsApp CTA Action */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://wa.me/237694342007?text=Bonjour,%20je%20souhaite%20commander%20des%20produits%20Leelou%20Baby%20Food"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-press hidden sm:flex items-center gap-2 bg-[#25D366] hover:bg-[#1ea952] text-white font-medium text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all"
+          >
+            <WhatsAppIcon className="w-4 h-4 fill-white" />
+            <span>Commander via WhatsApp</span>
+            <ArrowUpRight size={15} className="opacity-80" />
+          </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 left-0 w-full bg-white border-b border-gray-100 p-6 md:hidden flex flex-col gap-4 shadow-xl"
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] },
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+              transition: { duration: 0.2, ease: [0.23, 1, 0.32, 1] },
+            }}
+            className="lg:hidden overflow-hidden bg-white border-b border-gray-200 shadow-xl"
           >
-            <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-medium">Accueil</Link>
-            <Link href="/products" onClick={() => setIsOpen(false)} className="text-xl font-medium">Boutique</Link>
-            <Link href="/checkout" onClick={() => setIsOpen(false)} className="text-xl font-medium text-leelou">Mon Panier</Link>
-            <Link href="/story" className="hover:text-leelou">Notre Histoire</Link>
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-base font-medium text-gray-800 hover:text-leelou py-2 border-b border-gray-50 flex items-center justify-between"
+                >
+                  <span>{link.label}</span>
+                  <span className="text-gray-300 text-xs">→</span>
+                </Link>
+              ))}
 
+              <div className="pt-2">
+                <a
+                  href="https://wa.me/237694342007?text=Bonjour,%20je%20souhaite%20commander%20des%20produits%20Leelou%20Baby%20Food"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="btn-press flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ea952] text-white font-medium text-sm w-full py-3.5 rounded-full shadow-sm"
+                >
+                  <WhatsAppIcon className="w-5 h-5 fill-white" />
+                  <span>Commander via WhatsApp</span>
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
-    </motion.header>
   );
 }

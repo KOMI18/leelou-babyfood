@@ -1,28 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-  /* On définit les couleurs Leelou ici pour la v4 */
+  /* Couleurs de marque Leelou Baby Food */
   --color-leelou: #f0463c;
   --color-leelou-soft: #fff5f4;
   --color-leelou-cream: #fffbf9;
   --color-leelou-dark: #d63a32;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
 
-  /* Polices */
-  --font-serif: var(--font-playfair), serif;
-  --font-sans: var(--font-outfit), sans-serif;
+  /* Typographie obligatoire Ubuntu */
+  --font-sans: var(--font-ubuntu), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-ubuntu), system-ui, -apple-system, sans-serif;
+
+  /* Tokens d'animation - Standars Emil Kowalski / Audit */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 :root {
   --background: var(--color-leelou-cream);
-  --foreground: var(--color-leelou);
+  --foreground: #222222;
 }
 
-/* IMPORTANT : On supprime ou on commente le bloc (prefers-color-scheme: dark) 
-   pour éviter que le site devienne noir tout seul 
-*/
+html {
+  font-family: var(--font-sans);
+}
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Feedback tactile conforme au design engineering : active scale 0.97 */
+.btn-press {
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Accessibilité : respect de prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

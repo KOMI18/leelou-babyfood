@@ -1,27 +1,26 @@
-import { Playfair_Display, Outfit } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
-
 import type { Metadata } from "next";
-const playfair = Playfair_Display({ 
-  subsets: ["latin"], 
-  variable: "--font-playfair" 
+
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-ubuntu",
+  display: "swap",
 });
 
-const outfit = Outfit({ 
-  subsets: ["latin"], 
-  variable: "--font-outfit" 
-});
 export const metadata: Metadata = {
-  title: "Leelou Baby food",
-  description: "Le meilleur petit pot au Cameroun",
+  metadataBase: new URL("https://leelou-babyfood.vercel.app"),
+  title: "Leelou Baby Food | Petits pots & bouillies artisanaux au Cameroun",
+  description: "100% Camerounais, 100% Naturel, Sans Conservateurs. Des p'tits pots & bouillies pour accompagner nos gourmets de 6 à 36 mois dans l'apprentissage du goût.",
   icons: {
-    icon: '/favicon.jpeg', 
+    icon: "/favicon.jpeg",
   },
   openGraph: {
-    title: "Leelou Baby food",
-    description: "Le meilleur de notre terre pour votre trésor",
+    title: "Leelou Baby Food | Le meilleur de notre terre pour votre trésor",
+    description: "Des repas et p'tits pots artisanaux sains et sans conservateurs pour bébés, faits au Cameroun.",
     url: "https://leelou-babyfood.vercel.app",
-    siteName: "Leelou Baby food",
+    siteName: "Leelou Baby Food",
     images: [
       {
         url: "/favicon.jpeg",
@@ -33,21 +32,16 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-export default function SiteLayout({
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${playfair.variable} ${outfit.variable}`}>
-      <body className="font-sans bg-leelou-cream antialiased">
-       <div className="flex flex-col min-h-screen">
-        {/* <Header /> */}
-        <main className="flex-grow">
-          {children}
-        </main>
-        {/* <Footer /> */}
-    </div>
+    <html lang="fr" className={`${ubuntu.variable} scroll-smooth`}>
+      <body className="font-sans bg-leelou-cream text-gray-800 antialiased selection:bg-leelou/20 selection:text-leelou">
+        {children}
       </body>
     </html>
   );
