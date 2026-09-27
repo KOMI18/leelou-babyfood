@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 
 const StoreMap = dynamic(() => import("@/app/components/StoreMap"), { ssr: false });
 import TestimonialsMarquee from "@/app/components/TestimonialsMarquee";
+import BentoGallery from "@/app/components/BentoGallery";
 import {
   Sparkles,
   ShieldCheck,
@@ -34,94 +35,124 @@ import ImmersiveBabySection from "@/app/components/ImmersiveBabySection";
 // Données des Packs et Offres principales
 const PACKS_DATA = [
   {
-    id: "pack-decouverte",
-    title: "Pack Découverte",
-    subtitle: "Pour ses premiers pas",
-    price: "6 800 FCFA",
-    unit: "",
-    isPopular: false,
-    badgeText: "Idéal Test",
-    description:
-      "Une petite sélection variée pour faire tester nos recettes à votre bébé avant d'en recommander.",
-    bonus: "Livraison rapide sous 24h",
+    id: "pack-essai",
+    title: "Pack Essai",
+    subtitle: "Idéal pour essayer",
+    price: "8 000 FCFA",
+    unit: "(au lieu de 8 400 F)",
+    isPopular: true,
+    badgeText: "À p'tit prix",
+    description: "Le pack idéal pour essayer les produits Leelou à très p'tit prix et faire découvrir nos saveurs à bébé.",
+    bonus: "Mix parfait de nos meilleures ventes",
     features: [
-      "Assortiment de petits pots mixés",
-      "Purées mono-saveurs 100% locales",
-      "Sans aucun conservateur chimique",
-      "Adapté dès 6 mois",
+      "1 bouillie 400g au choix",
+      "2 compotes de fruits 130ml",
+      "2 repas de midi au choix",
+      "1 yaourt 240ml 😋"
     ],
-    waMessage:
-      "Bonjour Leelou Baby Food, je souhaite commander le Pack Découverte à 6 800 FCFA.",
-    buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
-  },
-  {
-    id: "pack-gouters",
-    title: "Pack Goûters",
-    subtitle: "Douceur fruitée",
-    price: "8 900 FCFA",
-    unit: "",
-    isPopular: false,
-    badgeText: "Vitaminé",
-    description:
-      "Un assortiment riche en vitamines. Parfait pour la pause de l'après-midi.",
-    bonus: "100% Fruits de saison locaux",
-    features: [
-      "Compotes de fruits (mangue, ananas, papaye...)",
-      "Yaourts brassés naturels pour bébés",
-      "Méli-mélo gourmand sans sucre ajouté",
-      "Conservation garantie au frais",
-    ],
-    waMessage:
-      "Bonjour Leelou Baby Food, je souhaite commander le Pack Goûters à 8 900 FCFA.",
+    waMessage: "Bonjour Leelou Baby Food, je souhaite commander le Pack Essai à 8 000 FCFA.",
     buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
   },
   {
     id: "pack-midi",
     title: "Pack Midi",
-    subtitle: "La semaine complète",
-    price: "12 000 FCFA",
-    unit: "",
+    subtitle: "Repas consistants",
+    price: "6 800",
+    unit: "FCFA",
     isPopular: false,
-    badgeText: "En Promo",
-    description:
-      "7 petits pots déjeuners complets (au lieu de 12 600 FCFA) pour assurer les repas de toute la semaine.",
-    bonus: "Protéines et légumes équilibrés",
+    badgeText: "Déjeuners",
+    description: "Si vous voulez uniquement les repas pour midi à base de légumes, féculents et protéines animales.",
+    bonus: "Poulet, poisson, viande de bœuf",
     features: [
-      "7 pots de déjeuners salés (Viande, Poulet, Poisson)",
-      "Textures progressives (lisse, grumeleux, morceaux)",
-      "Légumes et féculents du terroir camerounais",
-      "Pasteurisation douce naturelle",
+      "Repas 100% naturels pour le midi",
+      "Féculents : pomme de terre, patate douce, riz...",
+      "Protéines animales de qualité",
+      "Sans aucun conservateur"
     ],
-    waMessage:
-      "Bonjour Leelou Baby Food, je souhaite commander le Pack Midi de 7 pots en promotion à 12 000 FCFA.",
+    waMessage: "Bonjour Leelou Baby Food, je souhaite avoir les tarifs et commander un Pack Midi.",
     buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
   },
   {
-    id: "pack-starter",
-    title: "Pack Starter \"Mi'Idima\"",
-    subtitle: "Le favori des mamans",
-    price: "19 900 FCFA",
-    unit: "",
-    isPopular: true,
-    badgeText: "Coup de Cœur",
-    description:
-      "Le combo parfait pour les premières cuillerées. L'incontournable pour démarrer la diversification.",
-    bonus: "Personnalisation au prénom de bébé offerte !",
+    id: "pack-mini-gourmand",
+    title: "Pack Mini Gourmand",
+    subtitle: "Pour le goûter (16h)",
+    price: "6 800",
+    unit: "FCFA",
+    isPopular: false,
+    badgeText: "Vitamines",
+    description: "Si vous voulez uniquement les goûters en compotes fruitées ou yaourts pour la pause de 16h.",
+    bonus: "Plus de 50 variétés !",
     features: [
-      "18 petits pots assortis (fruits, légumes, déjeuners)",
-      "1 Guide pédiatrique de diversification offert",
-      "Étiquettes personnalisées au prénom de votre trésor",
-      "Jusqu'à 6 semaines de conservation",
+      "Fruits de saison locaux",
+      "Riche en vitamines et minéraux",
+      "Compotes fruitées douces",
+      "Yaourts onctueux naturels"
     ],
-    waMessage:
-      "Bonjour Leelou Baby Food, je souhaite commander le Pack Starter Mi'Idima à 19 900 FCFA avec personnalisation !",
+    waMessage: "Bonjour Leelou Baby Food, je souhaite avoir les tarifs et commander un Pack Mini Gourmand.",
+    buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
+  },
+  {
+    id: "pack-mini-complet",
+    title: "Pack Mini Complet",
+    subtitle: "La semaine gérée",
+    price: "6 800",
+    unit: "FCFA",
+    isPopular: false,
+    badgeText: "Équilibré",
+    description: "Si vous voulez un mixte parfait de repas et de goûters pour couvrir la semaine de bébé.",
+    bonus: "Repas salés et sucrés",
+    features: [
+      "Mixte de repas et goûters",
+      "Couvre les besoins de la semaine",
+      "Recettes variées pour l'éveil",
+      "Facile à réchauffer"
+    ],
+    waMessage: "Bonjour Leelou Baby Food, je souhaite avoir les tarifs et commander un Pack Mini Complet.",
+    buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
+  },
+  {
+    id: "pack-louloute",
+    title: "Pack Louloute",
+    subtitle: "Pour commencer",
+    price: "6 800",
+    unit: "FCFA",
+    isPopular: false,
+    badgeText: "1ères cuillères",
+    description: "Pour les bébés qui commencent la diversification avec leurs toutes premières cuillerées.",
+    bonus: "Saveurs simples et pures",
+    features: [
+      "4 pots mono-légumes",
+      "4 pots mono-fruits",
+      "Texture parfaitement lisse",
+      "Idéal pour l'introduction des goûts"
+    ],
+    waMessage: "Bonjour Leelou Baby Food, je souhaite commander un Pack Louloute pour la diversification de mon bébé.",
+    buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
+  },
+  {
+    id: "pack-decouverte",
+    title: "Pack Découverte",
+    subtitle: "Le plus complet",
+    price: "6 800",
+    unit: "FCFA",
+    isPopular: true,
+    badgeText: "Le Complet",
+    description: "Le pack le plus complet de notre gamme pour couvrir tous les moments de la journée de bébé.",
+    bonus: "De l'aube au crépuscule",
+    features: [
+      "3 repas de midi complets",
+      "3 dîners légers",
+      "3 goûters (compotes/yaourts)",
+      "1 bouillie lactée au choix"
+    ],
+    waMessage: "Bonjour Leelou Baby Food, je souhaite commander le Pack Découverte très complet.",
     buttonStyle: "bg-gray-900 hover:bg-gray-800 text-white",
   }
 ];
 
 // Chiffres clés de réassurance
 const STATS_DATA = [
-  { value: "+10 000", label: "Bébés nourris", sublabel: "avec le sourire au Cameroun" },
+  { value: "+100 000", label: "Bébés nourris", sublabel: "avec le sourire au Cameroun" },
   { value: "+40", label: "Points de vente", sublabel: "supermarchés & magasins bio" },
   { value: "+30", label: "Pharmacies partenaires", sublabel: "référencé par les pédiatres" },
   { value: "7", label: "Régions desservies", sublabel: "livraison rapide et sécurisée" },
@@ -201,106 +232,67 @@ const RECIPE_CATEGORIES = [
 
 // Points de Vente Physiques (Douala, Yaoundé et autres villes)
 const STORES_DATA = [
-  {
-    name: "Pharmacie du Centre",
-    city: "Douala",
-    district: "Akwa",
-    type: "Pharmacie",
-    address: "Boulevard de la Liberté, face Direction Orange",
-    phone: "+237 2 33 42 15 20",
-    lat: 4.048,
-    lng: 9.702,
-  },
-  {
-    name: "Supermarché Carrefour Market",
-    city: "Douala",
-    district: "Douala Grand Mall & Bonamoussadi",
-    type: "Supermarché",
-    address: "Aéroport International & Boulevard de la République",
-    phone: "+237 6 90 00 24 00",
-    lat: 4.088,
-    lng: 9.754,
-  },
-  {
-    name: "Pharmacie de la Côte",
-    city: "Douala",
-    district: "Bonamoussadi",
-    type: "Pharmacie",
-    address: "Rond-point Maetur, Bonamoussadi",
-    phone: "+237 2 33 47 88 12",
-    lat: 4.095,
-    lng: 9.760,
-  },
-  {
-    name: "Spar Supermarché",
-    city: "Douala",
-    district: "Akwa & Bonabéri",
-    type: "Supermarché",
-    address: "Rue Pau, Akwa / Entrée Bocom Bonabéri",
-    phone: "+237 6 94 00 11 22",
-    lat: 4.072,
-    lng: 9.670,
-  },
-  {
-    name: "Pharmacie de Bastos",
-    city: "Yaoundé",
-    district: "Bastos",
-    type: "Pharmacie",
-    address: "Quartier Bastos, face Ambassade de Grèce",
-    phone: "+237 2 22 20 30 40",
-    lat: 3.882,
-    lng: 11.511,
-  },
-  {
-    name: "Super U Yaoundé",
-    city: "Yaoundé",
-    district: "Hippodrome",
-    type: "Supermarché",
-    address: "Avenue Monseigneur Vogt, Centre Commercial",
-    phone: "+237 2 22 23 11 00",
-    lat: 3.866,
-    lng: 11.517,
-  },
-  {
-    name: "Pharmacie Française",
-    city: "Yaoundé",
-    district: "Centre-ville",
-    type: "Pharmacie",
-    address: "Près de la Poste Centrale, Yaoundé",
-    phone: "+237 2 22 22 05 18",
-    lat: 3.865,
-    lng: 11.516,
-  },
-  {
-    name: "Santa Lucia Supermarché",
-    city: "Yaoundé",
-    district: "Mokolo & Ngousso",
-    type: "Supermarché",
-    address: "Carrefour Mokolo / Face Hôpital Général Ngousso",
-    phone: "+237 6 98 12 34 56",
-    lat: 3.868,
-    lng: 11.498,
-  },
-  {
-    name: "Pharmacies & Magasins Partenaires",
-    city: "Autres villes & Régions",
-    district: "Bafoussam, Kribi, Garoua...",
-    type: "Pharmacie",
-    address: "Points relais et livraison express dans les 7 régions",
-    phone: "+237 6 94 34 20 07",
-    lat: null,
-    lng: null,
-  },
-  {
-    name: "Réseau National & Expédition Express",
-    city: "Autres villes & Régions",
-    district: "Toutes villes du Cameroun",
-    type: "Supermarché",
-    address: "Envoi sécurisé en glacière isotherme sous 24h à 48h",
-    phone: "+237 6 94 34 20 07",
-    lat: null,
-    lng: null,
-  },
+  // ================== YAOUNDE (Precise) ==================
+  { name: "MAHIMA Warda", city: "Yaoundé", district: "Warda", type: "Supermarché", address: "Carrefour Warda", phone: "6 94 34 20 07", lat: 3.868, lng: 11.512 },
+  { name: "MAHIMA Bastos", city: "Yaoundé", district: "Bastos", type: "Supermarché", address: "Bastos", phone: "6 94 34 20 07", lat: 3.883, lng: 11.509 },
+  { name: "MAHIMA Mokolo", city: "Yaoundé", district: "Mokolo", type: "Supermarché", address: "Marché Mokolo", phone: "6 94 34 20 07", lat: 3.871, lng: 11.498 },
+  { name: "Carrefour Market Ekié", city: "Yaoundé", district: "Ekié", type: "Supermarché", address: "Ekié", phone: "6 94 34 20 07", lat: 3.840, lng: 11.530 },
+  { name: "Carrefour Market Warda", city: "Yaoundé", district: "Warda", type: "Supermarché", address: "Warda", phone: "6 94 34 20 07", lat: 3.869, lng: 11.513 },
+  { name: "Carrefour Market Tsinga", city: "Yaoundé", district: "Tsinga", type: "Supermarché", address: "Tsinga", phone: "6 94 34 20 07", lat: 3.879, lng: 11.500 },
+  { name: "Carrefour Market Ekounou", city: "Yaoundé", district: "Ekounou", type: "Supermarché", address: "Ekounou", phone: "6 94 34 20 07", lat: 3.832, lng: 11.532 },
+  { name: "Santa Lucia Ahala", city: "Yaoundé", district: "Ahala", type: "Supermarché", address: "Ahala", phone: "6 94 34 20 07", lat: 3.810, lng: 11.495 },
+  { name: "Santa Lucia Mvan", city: "Yaoundé", district: "Mvan", type: "Supermarché", address: "Mvan", phone: "6 94 34 20 07", lat: 3.830, lng: 11.510 },
+  { name: "Santa Lucia Kondengui", city: "Yaoundé", district: "Kondengui", type: "Supermarché", address: "Kondengui", phone: "6 94 34 20 07", lat: 3.850, lng: 11.530 },
+  { name: "Santa Lucia Melen", city: "Yaoundé", district: "Melen", type: "Supermarché", address: "Melen", phone: "6 94 34 20 07", lat: 3.860, lng: 11.495 },
+  { name: "Santa Lucia Ngousso", city: "Yaoundé", district: "Ngousso", type: "Supermarché", address: "Ngousso", phone: "6 94 34 20 07", lat: 3.885, lng: 11.535 },
+  { name: "DOVV Bastos", city: "Yaoundé", district: "Bastos", type: "Supermarché", address: "Bastos", phone: "6 94 34 20 07", lat: 3.882, lng: 11.511 },
+  { name: "DOVV Titi Garage", city: "Yaoundé", district: "Essos", type: "Supermarché", address: "Titi Garage", phone: "6 94 34 20 07", lat: 3.865, lng: 11.530 },
+  { name: "OUMBE", city: "Yaoundé", district: "Carrefour Regie", type: "Supermarché", address: "Carrefour Regie", phone: "6 94 34 20 07", lat: 3.878, lng: 11.510 },
+  { name: "Pharmacie Colombe", city: "Yaoundé", district: "Omnisports", type: "Pharmacie", address: "Omnisports", phone: "6 94 34 20 07", lat: 3.881, lng: 11.527 },
+  { name: "Pharmacie Well", city: "Yaoundé", district: "Biyemassi", type: "Pharmacie", address: "Biyemassi", phone: "6 94 34 20 07", lat: 3.837, lng: 11.496 },
+  { name: "Pharmacie Xavyo", city: "Yaoundé", district: "Olezoa", type: "Pharmacie", address: "Olezoa", phone: "6 94 34 20 07", lat: 3.856, lng: 11.511 },
+  { name: "Pharmacie Moto", city: "Yaoundé", district: "Georges", type: "Pharmacie", address: "Georges", phone: "6 94 34 20 07", lat: 3.868, lng: 11.510 },
+  { name: "Boutique TRADEX", city: "Yaoundé", district: "Mvolye", type: "Boutique", address: "Station Tradex Mvolye", phone: "6 94 34 20 07", lat: 3.844, lng: 11.503 },
+  { name: "Alimentation Myriam", city: "Yaoundé", district: "Damas", type: "Supermarché", address: "Damas", phone: "6 94 34 20 07", lat: 3.829, lng: 11.511 },
+
+  // ================== DOUALA (Precise) ==================
+  { name: "Carrefour Market Bonamoussadi", city: "Douala", district: "Bonamoussadi", type: "Supermarché", address: "Bonamoussadi", phone: "6 94 34 20 07", lat: 4.095, lng: 9.760 },
+  { name: "Carrefour Market Akwa", city: "Douala", district: "Akwa", type: "Supermarché", address: "Akwa", phone: "6 94 34 20 07", lat: 4.048, lng: 9.702 },
+  { name: "Carrefour Douala Grand Mall", city: "Douala", district: "Aéroport", type: "Supermarché", address: "Grand Mall", phone: "6 94 34 20 07", lat: 4.015, lng: 9.725 },
+  { name: "MAHIMA Akwa", city: "Douala", district: "Akwa", type: "Supermarché", address: "Akwa", phone: "6 94 34 20 07", lat: 4.050, lng: 9.705 },
+  { name: "MAHIMA Bonapriso", city: "Douala", district: "Bonapriso", type: "Supermarché", address: "Bonapriso", phone: "6 94 34 20 07", lat: 4.030, lng: 9.700 },
+  { name: "Santa Lucia Bonamoussadi", city: "Douala", district: "Bonamoussadi", type: "Supermarché", address: "Bonamoussadi", phone: "6 94 34 20 07", lat: 4.098, lng: 9.758 },
+  { name: "Santa Lucia Ndogbong", city: "Douala", district: "Ndogbong", type: "Supermarché", address: "Ndogbong", phone: "6 94 34 20 07", lat: 4.075, lng: 9.740 },
+  { name: "Santa Lucia Cité des Palmiers", city: "Douala", district: "Cité des Palmiers", type: "Supermarché", address: "Cité des Palmiers", phone: "6 94 34 20 07", lat: 4.058, lng: 9.765 },
+  { name: "Santa Lucia Bonabéri", city: "Douala", district: "Bonabéri", type: "Supermarché", address: "Bonabéri", phone: "6 94 34 20 07", lat: 4.080, lng: 9.660 },
+  { name: "Solutions House", city: "Douala", district: "Yassa", type: "Boutique", address: "Yassa", phone: "6 94 34 20 07", lat: 4.017, lng: 9.805 },
+  { name: "SESAM MARKET", city: "Douala", district: "Yassa", type: "Supermarché", address: "Yassa", phone: "6 94 34 20 07", lat: 4.020, lng: 9.810 },
+  { name: "VINNY", city: "Douala", district: "Akwa", type: "Boutique", address: "Akwa", phone: "6 94 34 20 07", lat: 4.048, lng: 9.699 },
+  { name: "Pharmacie des portiques", city: "Douala", district: "Akwa", type: "Pharmacie", address: "Akwa", phone: "6 94 34 20 07", lat: 4.052, lng: 9.700 },
+  { name: "SPAR Akwa", city: "Douala", district: "Akwa", type: "Supermarché", address: "Akwa", phone: "6 94 34 20 07", lat: 4.045, lng: 9.705 },
+  { name: "SPAR Bonanjo", city: "Douala", district: "Bonanjo", type: "Supermarché", address: "Bonanjo", phone: "6 94 34 20 07", lat: 4.038, lng: 9.689 },
+  { name: "MENO", city: "Douala", district: "Deido", type: "Supermarché", address: "Deido", phone: "6 94 34 20 07", lat: 4.065, lng: 9.702 },
+  { name: "TOTAL BONJOUR", city: "Douala", district: "Bonapriso", type: "Boutique", address: "Bonapriso", phone: "6 94 34 20 07", lat: 4.032, lng: 9.702 },
+  { name: "Superette Logbessou", city: "Douala", district: "Logbessou", type: "Supermarché", address: "Logbessou", phone: "6 94 34 20 07", lat: 4.108, lng: 9.775 },
+  { name: "EDOGE Market", city: "Douala", district: "Ndogbong", type: "Supermarché", address: "Terrasse Ndogbong", phone: "6 94 34 20 07", lat: 4.072, lng: 9.742 },
+  { name: "Pharmacie Bell", city: "Douala", district: "Bali", type: "Pharmacie", address: "Bali", phone: "6 94 34 20 07", lat: 4.037, lng: 9.695 },
+  { name: "Pharmacie des immeubles", city: "Douala", district: "Kotto", type: "Pharmacie", address: "Kotto", phone: "6 94 34 20 07", lat: 4.095, lng: 9.754 },
+  { name: "Pharmacie La Balance", city: "Douala", district: "Newbell", type: "Pharmacie", address: "Newbell", phone: "6 94 34 20 07", lat: 4.031, lng: 9.722 },
+  { name: "Pharmacie Horizon", city: "Douala", district: "Bepanda", type: "Pharmacie", address: "Bepanda", phone: "6 94 34 20 07", lat: 4.065, lng: 9.725 },
+  { name: "Pharmacie la Patience", city: "Douala", district: "Makepe", type: "Pharmacie", address: "Makepe", phone: "6 94 34 20 07", lat: 4.085, lng: 9.742 },
+  { name: "Friendship Pharmacy", city: "Douala", district: "Beedi", type: "Pharmacie", address: "Beedi", phone: "6 94 34 20 07", lat: 4.070, lng: 9.761 },
+  { name: "Pharmacie Saint Agnes", city: "Douala", district: "Cité des palmiers", type: "Pharmacie", address: "Cité des palmiers", phone: "6 94 34 20 07", lat: 4.055, lng: 9.762 },
+  { name: "Pharmacie Saint Nicolas", city: "Douala", district: "Bonanjo", type: "Pharmacie", address: "Bonanjo", phone: "6 94 34 20 07", lat: 4.036, lng: 9.687 },
+
+  // ================== AUTRES VILLES ==================
+  { name: "Pharmacie de Kribi", city: "Kribi", district: "Centre", type: "Pharmacie", address: "Kribi", phone: "6 96 11 57 07", lat: 2.943, lng: 9.907 },
+  { name: "Pharmacie de Bertoua", city: "Bertoua", district: "Centre", type: "Pharmacie", address: "Face quincaillerie la régionale", phone: "6 94 34 20 07", lat: 4.580, lng: 13.682 },
+  { name: "Pharmacie des Merveilles", city: "Bafoussam", district: "Carrefour Explosif", type: "Pharmacie", address: "Carrefour Explosif", phone: "6 94 34 20 07", lat: 5.480, lng: 10.415 },
+  { name: "FURTHER MARKET", city: "Bafoussam", district: "Bandjoun", type: "Supermarché", address: "Total d’en bas Foyer Bandjoun", phone: "6 94 34 20 07", lat: 5.375, lng: 10.415 },
+  { name: "ADAMA MARKET", city: "Ngaoundéré", district: "Centre", type: "Supermarché", address: "Adama Market", phone: "6 94 34 20 07", lat: 7.322, lng: 13.583 },
+  { name: "Pharmacie de Maroua", city: "Maroua", district: "Pont Founangue", type: "Pharmacie", address: "Pont Founangue", phone: "6 94 34 20 07", lat: 10.589, lng: 14.323 },
+  { name: "Pharmacie de Edéa", city: "Edéa", district: "Centre", type: "Pharmacie", address: "Edéa", phone: "6 94 34 20 07", lat: 3.805, lng: 10.130 },
+  { name: "Pharmacie LES ÉLITES", city: "Ebolowa", district: "Centre", type: "Pharmacie", address: "Ebolowa", phone: "6 94 34 20 07", lat: 2.906, lng: 11.152 },
 ];
 
 // Foire Aux Questions
@@ -524,8 +516,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Grille des 4 Packs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
+          {/* Grille des 6 Packs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {PACKS_DATA.map((pack, idx) => (
               <motion.div
                 key={pack.id}
@@ -657,8 +649,8 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="flex bg-white rounded-full p-1 border border-gray-200 shadow-xs">
-              {["Tous", "Douala", "Yaoundé", "Autres villes & Régions"].map((city) => (
+            <div className="flex flex-wrap justify-center gap-2 bg-white rounded-3xl p-2 border border-gray-200 shadow-xs max-w-4xl mx-auto">
+              {["Tous", "Douala", "Yaoundé", "Kribi", "Bertoua", "Bafoussam", "Ngaoundéré", "Maroua", "Edéa", "Ebolowa"].map((city) => (
                 <button
                   key={city}
                   onClick={() => setCityFilter(city)}
@@ -932,59 +924,6 @@ export default function HomePage() {
       </section>
 
       {/* ===================================================================
-          STORYTELLING & TERROIRS CAMEROUNAIS
-          =================================================================== */}
-      <section id="histoire" className="py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          
-          <div className="grid lg:grid-cols-12 gap-12 items-center mb-20">
-            {/* Portrait Naomi */}
-            <div className="lg:col-span-5 relative">
-              <div className="aspect-[4/5] max-w-[420px] mx-auto rounded-[32px] overflow-hidden shadow-xl">
-                <img
-                  src="/images/naomi.jpg"
-                  alt="Naomi Mbakam, ingénieure et fondatrice de Leelou Baby Food"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="mt-4 p-4 rounded-2xl bg-leelou-cream border border-gray-100 text-center max-w-[320px] mx-auto">
-                <p className="text-sm font-bold text-gray-900">
-                  Naomie Mbakam
-                </p>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  Ingénieure, maman &amp; Fondatrice de Leelou Baby Food • Lauréate Sufawe 2025
-                </p>
-              </div>
-            </div>
-
-            {/* Texte Histoire */}
-            <div className="lg:col-span-7 space-y-6">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                D&apos;une cuisine de maman <br /> à une fierté nationale.
-              </h2>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                En 2019, face aux rayons saturés de petits pots industriels importés, ayant voyagé des semaines en mer avec force conservateurs, Naomi Mbakam se pose une question évidente :
-              </p>
-              
-              <div className="bg-leelou-soft p-6 sm:p-8 rounded-[32px] border-l-4 border-leelou space-y-2">
-                <Quote className="text-leelou opacity-40 mb-1" size={28} />
-                <p className="text-lg sm:text-xl font-medium text-gray-900 italic">
-                  « Pourquoi nos bébés ne grandiraient-ils pas avec les mangues de Njombé, les pommes de Babadjou et les légumes frais de notre terre, sains et sans chimie ? »
-                </p>
-              </div>
-
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Alliant son expertise rigoureuse d&apos;ingénieure et son amour maternel, Naomi a mis au point des procédés de fabrication et de pasteurisation douce pour offrir le meilleur aux bébés africains.
-              </p>
-            </div>
-          </div>
-
-
-
-        </div>
-      </section>
-
-      {/* ===================================================================
           D. FOIRE AUX QUESTIONS (FAQ) - ACCORDÉON INTERACTIF
           =================================================================== */}
       <section id="faq" className="py-24 bg-white">
@@ -1060,7 +999,62 @@ export default function HomePage() {
         subtitle="Parce que nos bébés méritent l'excellence de notre terroir." 
       />
 
+      <BentoGallery />
       <TestimonialsMarquee />
+
+      {/* ===================================================================
+          STORYTELLING & TERROIRS CAMEROUNAIS
+          =================================================================== */}
+      <section id="histoire" className="py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          
+          <div className="grid lg:grid-cols-12 gap-12 items-center mb-20">
+            {/* Portrait Naomi */}
+            <div className="lg:col-span-5 relative">
+              <div className="aspect-[4/5] max-w-[420px] mx-auto rounded-[32px] overflow-hidden shadow-xl">
+                <img
+                  src="/images/naomi.jpg"
+                  alt="Naomi Mbakam, ingénieure et fondatrice de Leelou Baby Food"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-4 p-4 rounded-2xl bg-leelou-cream border border-gray-100 text-center max-w-[320px] mx-auto">
+                <p className="text-sm font-bold text-gray-900">
+                  Naomie Mbakam
+                </p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Ingénieure, maman &amp; Fondatrice de Leelou Baby Food • Lauréate Sufawe 2025
+                </p>
+              </div>
+            </div>
+
+            {/* Texte Histoire */}
+            <div className="lg:col-span-7 space-y-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                D&apos;une cuisine de maman <br /> à une fierté nationale.
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                En 2019, face aux rayons saturés de petits pots industriels importés, ayant voyagé des semaines en mer avec force conservateurs, Naomi Mbakam se pose une question évidente :
+              </p>
+              
+              <div className="bg-leelou-soft p-6 sm:p-8 rounded-[32px] border-l-4 border-leelou space-y-2">
+                <Quote className="text-leelou opacity-40 mb-1" size={28} />
+                <p className="text-lg sm:text-xl font-medium text-gray-900 italic">
+                  « Pourquoi nos bébés ne grandiraient-ils pas avec les mangues de Njombé, les pommes de Babadjou et les légumes frais de notre terre, sains et sans chimie ? »
+                </p>
+              </div>
+
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Alliant son expertise rigoureuse d&apos;ingénieure et son amour maternel, Naomi a mis au point des procédés de fabrication et de pasteurisation douce pour offrir le meilleur aux bébés africains.
+              </p>
+            </div>
+          </div>
+
+
+
+        </div>
+      </section>
+
 
       {/* ===================================================================
           CTA FINAL & RÉASSURANCE
