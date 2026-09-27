@@ -25,9 +25,9 @@ export default function BentoGallery() {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-              Des bébés heureux, des mamans sereines
+              Plus de 100 000 bébés heureux et mamans sereines
             </h2>
-            <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
+            <p className="hidden sm:block text-gray-500 mt-3 max-w-2xl mx-auto">
               Chaque sourire est notre plus belle récompense. Nos petits gourmets grandissent avec l'énergie de notre terroir.
             </p>
           </motion.div>

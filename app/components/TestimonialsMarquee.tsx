@@ -57,7 +57,7 @@ const TESTIMONIALS = [
 
 export default function TestimonialsMarquee() {
   return (
-    <section className="py-24 bg-gray-50 overflow-hidden relative">
+    <section className="py-24 bg-white overflow-hidden relative">
       <style>{`
         @keyframes marquee-cards {
           0% { transform: translateX(0%); }
@@ -75,7 +75,7 @@ export default function TestimonialsMarquee() {
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
           Ce que les mamans en pensent
         </h2>
-        <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+        <p className="hidden sm:block text-gray-500 mt-3 max-w-xl mx-auto">
           Des milliers de parents au Cameroun font confiance à Leelou Baby Food pour l&apos;alimentation de leurs bébés.
         </p>
       </div>

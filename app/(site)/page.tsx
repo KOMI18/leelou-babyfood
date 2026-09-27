@@ -48,7 +48,7 @@ const PACKS_DATA = [
       "1 bouillie 400g au choix",
       "2 compotes de fruits 130ml",
       "2 repas de midi au choix",
-      "1 yaourt 240ml 😋"
+      "1 yaourt 240ml"
     ],
     waMessage: "Bonjour Leelou Baby Food, je souhaite commander le Pack Essai à 8 000 FCFA.",
     buttonStyle: "bg-leelou hover:bg-leelou-dark text-white",
@@ -151,36 +151,8 @@ const PACKS_DATA = [
 ];
 
 // Chiffres clés de réassurance
-const STATS_DATA = [
-  { value: "+100 000", label: "Bébés nourris", sublabel: "avec le sourire au Cameroun" },
-  { value: "+40", label: "Points de vente", sublabel: "supermarchés & magasins bio" },
-  { value: "+30", label: "Pharmacies partenaires", sublabel: "référencé par les pédiatres" },
-  { value: "7", label: "Régions desservies", sublabel: "livraison rapide et sécurisée" },
-];
 
 // Piliers de réassurance
-const REASSURANCE_BADGES = [
-  {
-    icon: ShieldCheck,
-    title: "Sans Conservateurs",
-    description: "Conservation naturelle par pasteurisation douce à la vapeur.",
-  },
-  {
-    icon: WheatOff,
-    title: "Sans Gluten",
-    description: "Céréales camerounaises naturellement digestes et saines.",
-  },
-  {
-    icon: Sprout,
-    title: "Enrichi au Soja",
-    description: "Apport végétal naturel en protéines et acides aminés essentiels.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Ingrédients Locaux",
-    description: "Récoltés en circuit direct à Babadjou, Foumbot et Njombé.",
-  },
-];
 
 // Gammes de recettes artisanales (univers riche & évolutif)
 const RECIPE_CATEGORIES = [
@@ -432,73 +404,7 @@ export default function HomePage() {
         <div className="absolute -bottom-10 left-10 w-80 h-80 bg-orange-100/40 rounded-full blur-3xl pointer-events-none" />
       </section>
 
-      {/* ===================================================================
-          B. BANDEAU CHIFFRES CLÉS & RÉASSURANCE (MARQUEE)
-          =================================================================== */}
-      <section className="py-8 bg-white border-y border-gray-100 overflow-hidden relative">
-        <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            animation: marquee 40s linear infinite;
-          }
-          .animate-marquee:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
-
-        {/* Dégradés sur les bords pour l'effet de fondu */}
-        <div className="absolute top-0 left-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-        <div className="flex w-max animate-marquee">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex items-center gap-16 px-8 shrink-0">
-              {/* Chiffres Clés */}
-              {STATS_DATA.map((stat) => (
-                <div key={stat.label} className="flex items-center gap-3">
-                  <span className="text-3xl sm:text-4xl font-black text-leelou tracking-tight">
-                    {stat.value}
-                  </span>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900 leading-tight">
-                      {stat.label}
-                    </span>
-                    <span className="text-xs text-gray-500 font-medium">
-                      {stat.sublabel}
-                    </span>
-                  </div>
-                </div>
-              ))}
-
-              {/* Point pour séparer */}
-              <div className="w-1.5 h-1.5 rounded-full bg-gray-200" />
-
-              {/* Badges de réassurance */}
-              {REASSURANCE_BADGES.map((badge, idx) => (
-                <div key={badge.title} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-leelou-cream flex items-center justify-center shrink-0">
-                    <badge.icon size={20} className="text-leelou" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900 leading-tight">
-                      {badge.title}
-                    </span>
-                    <span className="text-xs text-gray-500 font-medium">
-                      {badge.description}
-                    </span>
-                  </div>
-                </div>
-              ))}
-
-              {/* Point final pour séparer de la boucle suivante */}
-              <div className="w-1.5 h-1.5 rounded-full bg-gray-200" />
-            </div>
-          ))}
-        </div>
-      </section>
+      
 
       {/* ===================================================================
           C. LA SECTION "NOS PACKS & OFFRES" (LE COEUR DU SITE)
@@ -511,7 +417,7 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Des formules adaptées au rythme de chaque famille
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 font-normal">
+            <p className="hidden sm:block text-base sm:text-lg text-gray-600 font-normal">
               Commandez directement sur WhatsApp en un clic. Nos conseillères vous guident selon l&apos;âge et les besoins nutritionnels de votre bébé.
             </p>
           </div>
@@ -595,9 +501,7 @@ export default function HomePage() {
                     <WhatsAppIcon className="w-5 h-5 fill-current shrink-0" />
                     <span>Commander via WhatsApp</span>
                   </a>
-                  <p className="text-[11px] text-center text-gray-400 mt-2">
-                    Réponse immédiate de notre équipe
-                  </p>
+                  
                 </div>
               </motion.div>
             ))}
@@ -615,16 +519,15 @@ export default function HomePage() {
       {/* ===================================================================
           E. SECTION "OÙ NOUS TROUVER ?" (DIRECTEMENT EN DESSOUS DES PACKS)
           =================================================================== */}
-      <section id="points-de-vente" className="py-24 bg-leelou-soft/60 border-t border-leelou/10">
+      <section id="points-de-vente" className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Où trouver nos p&apos;tits pots ?
             </h2>
-            {/* Phrase rassurante obligatoire */}
-            <p className="text-base sm:text-lg text-gray-700 font-medium">
-              Présent dans plus de 30 pharmacies et 40 supermarchés de référence pour la santé de votre bébé.
+            <p className="text-base sm:text-lg text-gray-700 font-medium mt-2">
+              Déjà présents dans plus de <span className="font-bold text-leelou">40 supermarchés</span> et <span className="font-bold text-leelou">30 pharmacies</span> partenaires à travers <span className="font-bold text-leelou">7 régions</span> !
             </p>
             <p className="text-sm text-gray-500">
               Disponible à Douala, Yaoundé et dans nos points de vente partenaires à travers le Cameroun. Expédition express dans les 7 régions.
@@ -770,7 +673,7 @@ export default function HomePage() {
                   <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
                     Une infinité de recettes au rythme des saisons
                   </h2>
-                  <p className="text-sm sm:text-base text-gray-600">
+                  <p className="hidden sm:block text-sm sm:text-base text-gray-600">
                     Chez Leelou, la carte ne se résume pas à quelques saveurs fixes : nos petits pots, déjeuners et bouillies évoluent constamment selon les récoltes des terroirs camerounais pour enrichir le palais de bébé.
                   </p>
                 </div>
@@ -857,7 +760,7 @@ export default function HomePage() {
       {/* ===================================================================
           PROCESSUS & QUALITÉ (PASTEURISATION DOUCE & VIDÉO)
           =================================================================== */}
-      <section id="pourquoi-leelou" className="py-24 bg-gray-900 text-white relative overflow-hidden">
+      <section id="pourquoi-leelou" className="py-24 bg-white text-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
@@ -867,7 +770,7 @@ export default function HomePage() {
                 De la plantation <br />
                 <span className="text-leelou">à la petite cuillère.</span>
               </h2>
-              <p className="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+              <p className="hidden sm:block text-gray-600 text-base sm:text-lg leading-relaxed font-normal">
                 Pourquoi pasteuriser au lieu d&apos;utiliser des conservateurs ?
                 Parce que la pasteurisation douce préserve les vitamines et la saveur pure du fruit, tout en assurant une sécurité bactériologique irréprochable pour bébé.
               </p>
@@ -893,7 +796,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white text-base">{item.step}</h4>
-                      <p className="text-xs text-gray-400 mt-0.5">{item.desc}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -933,7 +836,7 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
               Questions Fréquemment Posées
             </h2>
-            <p className="text-base text-gray-600 font-normal">
+            <p className="hidden sm:block text-base text-gray-600 font-normal">
               Tout ce que les mamans souhaitent savoir sur la conservation, la composition et l&apos;âge recommandé.
             </p>
           </div>
@@ -1059,12 +962,12 @@ export default function HomePage() {
       {/* ===================================================================
           CTA FINAL & RÉASSURANCE
           =================================================================== */}
-      <section className="py-24 bg-leelou text-white relative overflow-hidden">
+      <section className="py-24 bg-white text-gray-900 relative overflow-hidden border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center space-y-8 relative z-10 max-w-3xl">
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight">
             Prêt à réveiller les papilles de votre petit gourmet ?
           </h2>
-          <p className="text-white/85 text-base sm:text-xl font-normal leading-relaxed">
+          <p className="hidden sm:block text-gray-600 text-base sm:text-xl font-normal leading-relaxed">
             Commandez votre Pack Starter dès aujourd&apos;hui et offrez à votre enfant le meilleur des produits frais du Cameroun.
           </p>
 

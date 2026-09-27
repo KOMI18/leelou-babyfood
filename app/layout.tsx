@@ -40,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${ubuntu.variable} scroll-smooth`}>
-      <body className="font-sans bg-leelou-cream text-gray-800 antialiased selection:bg-leelou/20 selection:text-leelou">
+      <body className="font-sans bg-white text-gray-800 antialiased selection:bg-leelou/20 selection:text-leelou">
         {children}
       </body>
     </html>
