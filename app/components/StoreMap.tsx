@@ -32,22 +32,34 @@ interface Store {
   lng?: number | null;
 }
 
-function MapUpdater({ center }: { center: [number, number] }) {
+function MapUpdater({ center, zoom }: { center: [number, number], zoom: number }) {
   const map = useMap();
   useEffect(() => {
-    map.flyTo(center, 12, { animate: true, duration: 1.5 });
-  }, [center, map]);
+    map.flyTo(center, zoom, { animate: true, duration: 1.5 });
+  }, [center, zoom, map]);
   return null;
 }
 
 export default function StoreMap({ stores, cityFilter }: { stores: Store[], cityFilter: string }) {
-  // Coordonnées par défaut : Douala
   let center: [number, number] = [4.07, 9.72];
-  
-  if (cityFilter === "Yaoundé") {
-    center = [3.865, 11.516];
-  } else if (cityFilter === "Douala") {
-    center = [4.07, 9.72];
+  let zoom = 12;
+
+  const cityCoords: Record<string, [number, number]> = {
+    "Yaoundé": [3.865, 11.516],
+    "Douala": [4.07, 9.72],
+    "Kribi": [2.943, 9.907],
+    "Bertoua": [4.580, 13.682],
+    "Bafoussam": [5.480, 10.415],
+    "Ngaoundéré": [7.322, 13.583],
+    "Maroua": [10.589, 14.323],
+    "Edéa": [3.805, 10.130],
+    "Ebolowa": [2.906, 11.152],
+    "Tous": [5.5, 11.5]
+  };
+
+  if (cityCoords[cityFilter]) {
+    center = cityCoords[cityFilter];
+    zoom = cityFilter === "Tous" ? 6 : 13;
   }
 
   // Filter valid coordinates
@@ -85,7 +97,7 @@ export default function StoreMap({ stores, cityFilter }: { stores: Store[], city
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           className="map-tiles"
         />
-        <MapUpdater center={center} />
+        <MapUpdater center={center} zoom={zoom} />
         {validStores.map((store, idx) => (
           <Marker key={idx} position={[store.lat!, store.lng!]} icon={blinkingDotIcon}>
             <Tooltip direction="top" offset={[0, -10]} opacity={1} className="custom-tooltip">
